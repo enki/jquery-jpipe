@@ -67,7 +67,11 @@
                     })
             });
             
-            $.getJSON(url, {}, $.jpipe.xhrcallback);
+            // $.getJSON(url, {}, $.jpipe.xhrcallback);
+            $.jsonp({
+                url: url,
+                success: $.jpipe.xhrcallback
+            });
             var d = new Date();
             var now = d.valueOf();
 
@@ -76,7 +80,8 @@
         loop: function() {
             if (this.startable) {
                 this.startable = false;
-                this._iter();
+                // this._iter();
+                setTimeout($.jpipe._iter, 600);
             }
         },
         _iter: function() {
